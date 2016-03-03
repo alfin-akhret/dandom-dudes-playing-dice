@@ -19,7 +19,7 @@
 var prompt = require('prompt'),
     program = require('commander'),
     colors = require('colors'),
-    Game = require('./src/game'); // import Game object prototype
+    Game = require('./src/game'); // import Game object prototype   
 
 // start the program
 program
