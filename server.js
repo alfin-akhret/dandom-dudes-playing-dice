@@ -35,12 +35,12 @@ app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR API ---------------------------------
 // ================================================
-// var apiRoutes = require('./app/routes/api')(app, express);
-// app.use('/api', apiRoutes);
+var apiRoutes = require('./api')(app, express);
+app.use('/api/game', apiRoutes);
 
 // MAIN CATCHALL ROUTES ---------------------------
 app.get('*', function(req, res){
-    res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 // START THE SERVER -------------------------------

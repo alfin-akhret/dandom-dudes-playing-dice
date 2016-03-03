@@ -48,7 +48,7 @@ Game.prototype.result = function() {
     for (var i = 0; i < this.playerNum; ++i) {
         // remove
         this.players[i].removeDice(this.diceToRemove);
-        dicesToOffer.push(this.players[i].passDice(this.diceToPass));
+        dicesToOffer.push(this.players[i].passDice(parseInt(this.diceToPass)));
     }
 
 

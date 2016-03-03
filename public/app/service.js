@@ -6,5 +6,9 @@ angular.module('GameService', [])
             return $http.post('/api/game/init', gameSettings);
         }
 
+        Game.play = function() {
+            return $http.post('/api/game/start');
+        }
+
         return Game;
     })
