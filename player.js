@@ -19,7 +19,7 @@ Player.prototype.removeDice = function(dice) {
 // this function move dices
 // and save it for later use
 // return Array
-Player.prototype.moveDice = function(dice) {
+Player.prototype.passDice = function(dice) {
     return remove(dice, this.dices);
 }
 
