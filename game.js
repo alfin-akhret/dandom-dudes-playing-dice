@@ -3,7 +3,7 @@ var Player = require('./player');
 function Game(playerNum, diceToRemove, diceToPass) {
     this.playerNum = playerNum;
     this.players = [];
-    this.winner = 0;
+    this.winners = [];
     this.diceToRemove = diceToRemove;
     this.diceToPass = diceToPass;
     this.round = 1;
@@ -16,7 +16,8 @@ function Game(playerNum, diceToRemove, diceToPass) {
 // assign each of them 6 misterious dice
 Game.prototype.init = function() {
     for (var i = 0; i < this.playerNum; ++i) {
-        this.players.push(new Player(new Array(6)));
+        var chr = String.fromCharCode(97 + i).toUpperCase(); // generate player name
+        this.players.push(new Player(chr, new Array(6)));
     }
 }
 
@@ -37,6 +38,7 @@ Game.prototype.result = function() {
         dicesToOffer.push(this.players[i].passDice(this.diceToPass));
     }
 
+
     // pass bad-luck dice to another user
     for (var i = 0; i < this.playerNum; ++i) {
         if(i == (this.playerNum - 1))
@@ -45,10 +47,22 @@ Game.prototype.result = function() {
             this.players[i+1].addDice(dicesToOffer[i]);
     }
 
+    // get the winner
+    this.getWinners();
+
     // add round by 1
     this.round++;
 
     return this.players;
+}
+
+Game.prototype.getWinners = function() {
+    // check the winner
+    for (var i = 0; i < this.playerNum; ++i) {
+        if(this.players[i].dices.length < 1) {
+            this.winners.push(this.players[i]);
+        }
+    }
 }
 
 module.exports = Game;

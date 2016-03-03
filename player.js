@@ -1,5 +1,6 @@
-function Player(dices) {
+function Player(name, dices) {
     this.dices = dices;
+    this.name = name;
 }
 
 // this function roll the dice for the player

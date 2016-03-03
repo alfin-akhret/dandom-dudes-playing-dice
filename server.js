@@ -10,7 +10,7 @@ program
     .arguments('<badluckDice>')
     .action(function(players, luckyDice, badluckDice){
         // create new game
-        var g = new Game(players, luckyDice, badluckDice);
+        var g = new Game(parseInt(players), parseInt(luckyDice), parseInt(badluckDice));
 
         prompt.message = colors.rainbow(">>");
         prompt.delimiter = " ";
@@ -19,7 +19,7 @@ program
 
             var property = {
                 name: 'start',
-                message: colors.green('start next round '+ round + ' ?'),
+                message: colors.green('start round '+ round + ' ?'),
                 validator: /y[es]*|n[o]?/,
                 warning: 'Must respond yes or no',
                 default: 'yes',
@@ -30,6 +30,7 @@ program
                 var answer = result.start;
                 if(answer === 'no' || answer === 'n') {
                     console.log('we are done.');
+                    return;
                 } else {
                     // play the game
                     console.log('ROUND ' + round + '\n========================');
@@ -43,22 +44,31 @@ program
                     g.result();
                     g.players.forEach(formatOutput);
 
+                    if(g.winners.length > 0) {
+                        console.log(colors.yellow('\nWinners:'));
+                        for(var i = 0, l = g.winners.length; i < l; ++i) {
+                            console.log('Player ' + g.winners[i].name);
+                        }
+                        return;
+                    }
                     ask(g.round);
                 }
             });
         })(g.round);
-
-        function onErr(err) {
-            console.log(err);
-            return 1;
-        }
-
-        function formatOutput(num, index) {
-            console.log('Player'+ (index+1) + ' : ' + num.dices.toString());
-        }
-
+        
     })
     .parse(process.argv);
+
+
+// some helpers
+function onErr(err) {
+    console.log(err);
+    return 1;
+}
+
+function formatOutput(num, index) {
+    console.log('Player '+ num.name + ' : ' + num.dices.toString());
+}
 
 
 
