@@ -1,0 +1,11 @@
+{
+  "name": "random-dudes",
+  "version": "0.0.1",
+  "description": "random duded playing random dices",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alfin.akhret@gmail.com",
+  "license": "MIT"
+}
