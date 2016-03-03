@@ -1,10 +1,20 @@
-var Game = require('./game');
+var program = require('commander'),
+    Game = require('./game');
 
-var g = new Game(6, 6, 1); // 6 players, diceToRemove = 6, diceToPass = 1
-// play
-console.log(g.start());
-console.log('===================================');
-console.log(g.result());
+program
+    .version('0.0.1')
+    .arguments('<start>')
+    .option('-p, --players <n>', 'Number of players to play in a game', parseInt)
+    .option('-l, --lucky-dice <n>', 'The lucky dice', parseInt)
+    .option('-b, --badluck-dice <n>', 'The bad luck dice', parseInt)
+    .action(function() {
+        // do something
+        
+    })
+    .parse(process.argv);
+
+
+
 
 
 

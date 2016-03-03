@@ -6,6 +6,7 @@ function Game(playerNum, diceToRemove, diceToPass) {
     this.winner = 0;
     this.diceToRemove = diceToRemove;
     this.diceToPass = diceToPass;
+    this.round = 1;
     
     // constructor
     this.init();
@@ -43,6 +44,9 @@ Game.prototype.result = function() {
         else
             this.players[i+1].addDice(dicesToOffer[i]);
     }
+
+    // add round by 1
+    this.round++;
 
     return this.players;
 }
