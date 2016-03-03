@@ -3,7 +3,7 @@ angular.module('GameService', [])
         var Game = {};
 
         Game.start = function(gameSettings) {
-            return $http.get('/api/game/init');
+            return $http.post('/api/game/init', gameSettings);
         }
 
         return Game;

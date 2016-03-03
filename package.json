@@ -9,9 +9,12 @@
   "author": "alfin.akhret@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "ecstatic": "^1.4.0",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
     "prompt": "^1.0.0"
   }
 }
