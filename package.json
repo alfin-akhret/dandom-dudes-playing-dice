@@ -11,6 +11,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.9.0",
+    "ecstatic": "^1.4.0",
     "prompt": "^1.0.0"
   }
 }
