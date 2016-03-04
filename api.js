@@ -3,8 +3,6 @@ var Game = require('./src/game');
 module.exports = function(app, express) {
     var apiRouter = express.Router();
     var g = {};
-    var before = [];
-    var after = [];
 
     // simple route
     apiRouter.post('/init', function(req, res) {
@@ -26,23 +24,21 @@ module.exports = function(app, express) {
         g.start();
         response.afterRoll = g.players.map(formatOutput);
 
+        response.round = g.round;
+
         g.result();
         response.afterMove = g.players.map(formatOutput);
 
         response.continueGame = true;
-        
-        if(g.winners > 0) {
+
+        if(g.winners.length > 0) {
             response.continueGame = false;
+            response.winners = g.winners;
         }
 
         res.json(response);
 
     });
-
-    function playGame() {
-        before = g.start();
-        after = g.result();
-    }
 
     return apiRouter;
 }

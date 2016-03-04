@@ -17,28 +17,35 @@
 </head>
 <body ng-app='DudeApp' ng-controller='MainCtrl as main'>
     
-    <h1>Dude rolls a dice</h1>
+    <h1>Random dudes playing random dices</h1>
     
-    <p>Enter the game settings</p>
-    <form ng-submit="main.start()">
-        <label>How many dudes is gonna play the game ?</label>
-        <input type="text" ng-model="main.gameSettings.players"><br>
-        <label>What is the lucky dice</label>
-        <input type="text" ng-model="main.gameSettings.luckyDice"><br>
-        <label>What is the bad luck dice</label>
-        <input type="text" ng-model="main.gameSettings.badluckDice">
-        <button>Go</button>
-    </form>
+    <div ng-if="main.gameResult == undefined">
+        <p>Enter the game settings</p>
+        <form ng-submit="main.start()">
+            <label>How many dudes is gonna play the game ?</label>
+            <input type="text" ng-model="main.gameSettings.players"><br>
+            <label>What is the lucky dice</label>
+            <input type="text" ng-model="main.gameSettings.luckyDice"><br>
+            <label>What is the bad luck dice</label>
+            <input type="text" ng-model="main.gameSettings.badluckDice">
+            <button>Go</button>
+        </form>
+        <p>{{ main.info }}</p>
+    
+    </div>
 
-
-    {{ main.info }} <br>
-
-    <button ng-if="main.continueGame" ng-click="main.play()">Play round!</button> <br>
-    <!-- <button ng-if="!main.continueGame" ng-click="main.play()">Play again!</button> <br> -->
+    <button ng-if="main.continueGame" ng-click="main.play()">Play round!</button>
+    <button ng-if="main.hasWinners" ng-click="main.reset()">Play again</button>
+    <div ng-if="main.hasWinners">
+        <h1>Game over dudes!</h1>
+        <ul>
+            <li ng-repeat="item in main.gameResult.winners"><h3>Player {{ item.name }} is a winner.</h3></li>
+        </ul>
+    </div>
 
 
     <div ng-if="main.gameResult">
-        <h1>Round {{ main.gameResult.round }}</h1>
+        <h2>Round {{ main.gameResult.round }}</h2>
         
         <h3>After dice rolled</h3>
 
