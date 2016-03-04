@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Dude playing dice</title>
 
+    <!-- load boostrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
     <!-- load angular and all neccesaries modules -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
@@ -17,49 +20,51 @@
 </head>
 <body ng-app='DudeApp' ng-controller='MainCtrl as main'>
     
-    <h1>Random dudes playing random dices</h1>
+    <div class="container">
     
-    <div ng-if="main.gameResult == undefined">
-        <p>Enter the game settings</p>
-        <form ng-submit="main.start()">
-            <label>How many dudes is gonna play the game ?</label>
-            <input type="text" ng-model="main.gameSettings.players"><br>
-            <label>What is the lucky dice</label>
-            <input type="text" ng-model="main.gameSettings.luckyDice"><br>
-            <label>What is the bad luck dice</label>
-            <input type="text" ng-model="main.gameSettings.badluckDice">
-            <button>Go</button>
-        </form>
-        <p>{{ main.info }}</p>
-    
-    </div>
-
-    <button ng-if="main.continueGame" ng-click="main.play()">Play round!</button>
-    <button ng-if="main.hasWinners" ng-click="main.reset()">Play again</button>
-    <div ng-if="main.hasWinners">
-        <h1>Game over dudes!</h1>
-        <ul>
-            <li ng-repeat="item in main.gameResult.winners"><h3>Player {{ item.name }} is a winner.</h3></li>
-        </ul>
-    </div>
-
-
-    <div ng-if="main.gameResult">
-        <h2>Round {{ main.gameResult.round }}</h2>
+        <h1>Random dudes playing random dices</h1>
         
-        <h3>After dice rolled</h3>
+        <div ng-if="main.gameResult == undefined">
+            <p>Enter the game settings</p>
+            <form ng-submit="main.start()">
+                <label>How many dudes is gonna play the game ?</label>
+                <input type="text" ng-model="main.gameSettings.players"><br>
+                <label>What is the lucky dice</label>
+                <input type="text" ng-model="main.gameSettings.luckyDice"><br>
+                <label>What is the bad luck dice</label>
+                <input type="text" ng-model="main.gameSettings.badluckDice">
+                <button>Go</button>
+            </form>
+            <p>{{ main.info }}</p>
+        
+        </div>
 
-        <ul>
-            <li ng-repeat="item in main.gameResult.afterRoll">{{ item }}</li>
-        </ul>
+        <button ng-if="main.continueGame" ng-click="main.play()">Play round!</button>
+        <button ng-if="main.hasWinners" ng-click="main.reset()">Play again</button>
+        <div ng-if="main.hasWinners">
+            <h1>Game over dudes!</h1>
+            <ul>
+                <li ng-repeat="item in main.gameResult.winners"><h3>Player {{ item.name }} is a winner.</h3></li>
+            </ul>
+        </div>
 
-        <h3>After dice move/removed</h3>
-        <ul>
-            <li ng-repeat="item in main.gameResult.afterMove">{{ item }}</li>
-        </ul>
+
+        <div ng-if="main.gameResult">
+            <h2>Round {{ main.gameResult.round }}</h2>
+            
+            <h3>After dice rolled</h3>
+
+            <ul>
+                <li ng-repeat="item in main.gameResult.afterRoll">{{ item }}</li>
+            </ul>
+
+            <h3>After dice move/removed</h3>
+            <ul>
+                <li ng-repeat="item in main.gameResult.afterMove">{{ item }}</li>
+            </ul>
+        </div>
+
+
     </div>
-
-
-    
 </body>
 </html>
