@@ -28,12 +28,12 @@
             <p>Enter the game settings</p>
             <form ng-submit="main.start()">
                 <label>How many dudes is gonna play the game ?</label>
-                <input type="text" ng-model="main.gameSettings.players"><br>
+                <input type="number" ng-model="main.gameSettings.players" min="1" max="26"><br>
                 <label>What is the lucky dice</label>
-                <input type="text" ng-model="main.gameSettings.luckyDice"><br>
+                <input type="number" ng-model="main.gameSettings.luckyDice" min="1" max="6"><br>
                 <label>What is the bad luck dice</label>
-                <input type="text" ng-model="main.gameSettings.badluckDice">
-                <button>Go</button>
+                <input type="number" ng-model="main.gameSettings.badluckDice" min="1" max="6"><br>
+                <button ng-if="!main.continueGame">Save settings</button>
             </form>
             <p>{{ main.info }}</p>
         
