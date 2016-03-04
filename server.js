@@ -2,6 +2,7 @@
 // 
 // web server for
 // 'RANDOM DUDE PLAYING RANDOM DICE'
+// author: alfin.akhret@gmail.com
 
 var express = require('express'),
     path = require('path'),
