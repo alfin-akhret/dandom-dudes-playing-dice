@@ -20,7 +20,7 @@ $ npm install
 $ node cli_version 6 6 1
 ```
 
-6, 6, 1 is an arguments: <number of players> <lucky dice> <badluck dice>
+6, 6, 1 is an arguments: [number of players] [lucky dice] [badluck dice]
 
 Thats it.
 Enjoy
