@@ -3,6 +3,8 @@ var Game = require('./src/game');
 module.exports = function(app, express) {
     var apiRouter = express.Router();
     var g = {};
+    var before = [];
+    var after = [];
 
     // simple route
     apiRouter.post('/init', function(req, res) {
@@ -17,30 +19,30 @@ module.exports = function(app, express) {
         // PS: have no idea why JS 'deep copy is not working here... gotta figure out'
         var response = {};
 
-        // populate result
+        function formatOutput(num, index) {
+            return 'Player '+ num.name + ' : ' + num.dices.toString();
+        }
+
         g.start();
-        var gameRound = g.round;
-        response.afterRoll = g.players;
-        console.log(response.afterRoll);
+        response.afterRoll = g.players.map(formatOutput);
 
         g.result();
-        response.afterMove = g.players;
-        console.log(response.afterMove);
+        response.afterMove = g.players.map(formatOutput);
 
-
-        var winners = g.winners;
-        var continueGame = true;
+        response.continueGame = true;
         
-        if(winners.length > 0) continueGame = false;
-        
-        response.success = true,
-        response.round = gameRound,
-        response.continueGame = continueGame
+        if(g.winners > 0) {
+            response.continueGame = false;
+        }
 
-        // send result
         res.json(response);
 
     });
+
+    function playGame() {
+        before = g.start();
+        after = g.result();
+    }
 
     return apiRouter;
 }

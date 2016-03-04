@@ -51,7 +51,6 @@ Game.prototype.result = function() {
         dicesToOffer.push(this.players[i].passDice(parseInt(this.diceToPass)));
     }
 
-
     // pass bad-luck dice to another user
     for (var i = 0; i < this.playerNum; ++i) {
         if(i == (this.playerNum - 1))
