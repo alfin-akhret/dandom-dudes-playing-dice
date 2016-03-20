@@ -1,6 +1,5 @@
 var Game = require('./src/game');
 
-
 module.exports = function(app, express) {
     var apiRouter = express.Router();
     var g = {};
